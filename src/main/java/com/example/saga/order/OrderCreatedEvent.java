@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.boot.jackson.JsonObjectSerializer;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Random;
 
@@ -26,13 +29,13 @@ public class OrderCreatedEvent {
                 '}';
     }
 
-    public String toJSON() {
+    public String toJSON()  {
         try {
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String json = ow.writeValueAsString(this);
             return json;
         } catch(Exception e) {
-            return "";
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "JSON Parsing Exception");
         }
     }
 }

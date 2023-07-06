@@ -1,11 +1,13 @@
 package com.example.saga.payment;
 
-enum StatusEnum {
-    DECLINED,
-    ACCEPTED
-}
+
 
 public class Payment {
+
+    public enum StatusEnum {
+        DECLINED,
+        ACCEPTED
+    }
     public long orderId;
     public StatusEnum status;
     public String reason;

@@ -1,11 +1,9 @@
-package com.example.saga.payment;
+package com.example.saga.payment.events;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Random;
 
 public class OrderCreatedEvent {
     public long eventId;

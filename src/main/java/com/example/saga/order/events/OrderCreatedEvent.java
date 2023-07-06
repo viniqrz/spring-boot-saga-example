@@ -1,11 +1,9 @@
-package com.example.saga.order;
+package com.example.saga.order.events;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.saga.order.entity.Order;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Random;

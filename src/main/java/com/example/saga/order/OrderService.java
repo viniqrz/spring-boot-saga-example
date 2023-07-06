@@ -1,12 +1,13 @@
 package com.example.saga.order;
 
+import com.example.saga.order.entity.Order;
+import com.example.saga.order.events.OrderCreatedEvent;
+import com.example.saga.order.events.PaymentProcessedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Service()
 public class OrderService {
@@ -25,9 +26,24 @@ public class OrderService {
     }
 
     public void createOrder() {
-        Order order = new Order(Math.abs(new Random().nextLong()), "Mohammed Bilal", OrderStatusEnum.PAYMENT_PENDING);
+        Order order = new Order("Mohammed Bilal", Order.OrderStatusEnum.PAYMENT_PENDING);
         OrderService.orders.add(order);
         OrderCreatedEvent orderEvent = OrderCreatedEvent.fromOrder(order);
         this.orderCreatedProducer.sendOrderCreatedMessage(orderEvent);
+    }
+
+    public Order findOrderById(Long orderId) {
+        for (Order order : OrderService.orders) {
+            if (order.getId() == orderId) {
+                return order;
+            }
+        }
+        return null;
+    }
+
+    public void processOrderPaymentUpdate(PaymentProcessedEvent event) {
+        Order order = findOrderById(event.orderId);
+        if (order == null) return;
+        order.updatePaymentStatus(event.status);
     }
 }

@@ -1,21 +1,22 @@
-package com.example.saga.order;
+package com.example.saga.payment;
 
-import com.example.saga.order.events.OrderCreatedEvent;
+import com.example.saga.payment.events.PaymentProcessedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderCreatedProducer {
+public class PaymentProcessedProducer {
+
     private KafkaTemplate<String, String> kafkaTemplate;
-    private static final String TOPIC = "ORDER_CREATED_TOPIC";
+    private static final String TOPIC = "PAYMENT_PROCESSED_TOPIC";
 
     @Autowired
-    public OrderCreatedProducer(KafkaTemplate<String, String> kafkaTemplate) {
+    public PaymentProcessedProducer(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendOrderCreatedMessage(OrderCreatedEvent event) {
+    public void sendPaymentProcessedMessage(PaymentProcessedEvent event) {
         this.kafkaTemplate.send(TOPIC, event.toJSON());
     }
 }

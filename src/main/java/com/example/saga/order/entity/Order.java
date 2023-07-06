@@ -1,12 +1,16 @@
-package com.example.saga.order;
+package com.example.saga.order.entity;
 
-enum OrderStatusEnum {
-    PAYMENT_PENDING,
-    PAYMENT_DECLINED,
-    PAYMENT_ACCEPTED
-}
+
+import java.util.Random;
 
 public class Order {
+
+    public enum OrderStatusEnum {
+        PAYMENT_PENDING,
+        PAYMENT_DECLINED,
+        PAYMENT_ACCEPTED
+    }
+
     public long id;
 
     public String customerName;
@@ -45,11 +49,18 @@ public class Order {
         this.status = status;
     }
 
-    public Order(long id, String customerName, OrderStatusEnum status) {
-        this.id = id;
+    public Order(String customerName, OrderStatusEnum status) {
+        this.id = Math.abs(new Random().nextLong());
         this.customerName = customerName;
         this.status = status;
     }
 
+    public void updatePaymentStatus(Payment.StatusEnum status) {
+        if (status == Payment.StatusEnum.ACCEPTED) {
+            this.status = OrderStatusEnum.PAYMENT_ACCEPTED;
+        } else {
+            this.status = OrderStatusEnum.PAYMENT_DECLINED;
+        }
+    }
 
 }

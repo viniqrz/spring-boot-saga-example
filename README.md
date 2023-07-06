@@ -1,15 +1,15 @@
-# Spring Boot Transactional Saga Implementation with Apache Kafka
+# Spring Boot Transaction (Saga) Implementation with Apache Kafka 🦭
 
 ### The app contains an example of Kafka configuration and a simple dummy e-commerce architecture for demonstration purposes.
 
 ### Feel free to use it as a template for your own projects.
 
-### Important:
+### ⚠️ Important:
 - The app is not production ready. It is just a simple example of how to use Kafka with Spring Boot.
 - There are other styles of Saga implementation. This is just one of them.
-- Kafka configuration in Spring Boot can be a bit confusing, not all properties set in application.properties files will be applied to the client. The safest way is to create Configuration Class like the one inside payment API module.
+- Kafka configuration in Spring Boot can be a bit confusing, not all properties set in application.properties files will be applied to the client (e.g: auto-commiting). The safest way is to create a Configuration Class like the one inside payment service module.
 
-### How to run:
+### ✅ How to run:
 - Start Zookeeper, Kafka and Control Center all together with docker-compose.yml file inside docker folder.
 - You can use the following command to start all containers:
 ```sh
@@ -27,3 +27,7 @@ docker-compose up -d
 - Apache Kafka: 2.7.0
 - Spring for Apache Kafka: 2.6.4
 - Java: 11
+
+Wanna improve this project? Feel free to open a PR! 🚀
+
+If you have any questions, feel free to contact me at: [LinkedIn](https://www.linkedin.com/in/viniqrz/)

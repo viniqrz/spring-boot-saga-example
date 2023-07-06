@@ -1,6 +1,6 @@
 package com.example.saga.order;
 
-import com.example.saga.order.events.PaymentProcessedEvent;
+import com.example.saga.shared.event.PaymentProcessedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;

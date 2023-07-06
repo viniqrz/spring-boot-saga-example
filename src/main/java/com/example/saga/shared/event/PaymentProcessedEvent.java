@@ -1,18 +1,18 @@
-package com.example.saga.payment.events;
+package com.example.saga.shared.event;
 
 
-import com.example.saga.payment.entity.Payment;
+import com.example.saga.shared.entity.Payment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.json.JsonMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 public class PaymentProcessedEvent {
     public long eventId;
     public long orderId;
     public Payment.StatusEnum status;
+
+    public PaymentProcessedEvent() {}
 
     public PaymentProcessedEvent(long orderId, Payment.StatusEnum status) {
         this.eventId = System.currentTimeMillis();
@@ -41,7 +41,7 @@ public class PaymentProcessedEvent {
             PaymentProcessedEvent event = objectMapper.readValue(json, PaymentProcessedEvent.class);
             return event;
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "JSON Parsing Exception");
+           throw new RuntimeException(e);
         }
     }
 

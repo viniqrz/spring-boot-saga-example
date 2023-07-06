@@ -1,4 +1,4 @@
-package com.example.saga.order.entity;
+package com.example.saga.shared.entity;
 
 
 import java.util.Random;

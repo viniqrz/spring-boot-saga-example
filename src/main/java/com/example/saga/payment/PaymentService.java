@@ -1,8 +1,8 @@
 package com.example.saga.payment;
 
-import com.example.saga.payment.entity.Payment;
-import com.example.saga.payment.events.OrderCreatedEvent;
-import com.example.saga.payment.events.PaymentProcessedEvent;
+import com.example.saga.shared.entity.Payment;
+import com.example.saga.shared.event.OrderCreatedEvent;
+import com.example.saga.shared.event.PaymentProcessedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

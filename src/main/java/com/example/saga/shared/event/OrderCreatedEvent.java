@@ -1,6 +1,6 @@
-package com.example.saga.order.events;
+package com.example.saga.shared.event;
 
-import com.example.saga.order.entity.Order;
+import com.example.saga.shared.entity.Order;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.http.HttpStatus;
@@ -37,6 +37,16 @@ public class OrderCreatedEvent {
             return json;
         } catch(Exception e) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "JSON Parsing Exception");
+        }
+    }
+
+    public static OrderCreatedEvent fromJSON(String json) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            OrderCreatedEvent event = objectMapper.readValue(json, OrderCreatedEvent.class);
+            return event;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

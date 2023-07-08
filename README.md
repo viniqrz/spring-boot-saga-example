@@ -10,12 +10,21 @@
 - Kafka configuration in Spring Boot can be a bit confusing, not all properties set in application.properties files will be applied to the client (e.g: auto-commiting). The safest way is to create a Configuration Class like the one inside payment service module.
 
 ### ✅ How to run:
-- Start Zookeeper, Kafka and Control Center all together with docker-compose.yml file inside docker folder.
-- You can use the following command to start all containers:
+- Clone the repository.
+- Make sure you have Maven, Docker and Docker Compose installed.
+- Build the project with Maven. Use the following command inside the root folder:
+```sh
+ mvn clean package spring-boot:repackage
+```
+- Now You can use the following command to start all containers:
 ```sh
 docker-compose up -d
 ```
 - Control center is a great way to visualize your Kafka cluster. You can access it at http://localhost:9021 once all containers are up and running.
+
+### 📸 Control center in your browser should look like this:
+
+![Control Center](https://docs.confluent.io/platform/current/_images/c3-clusters-main-page.png)
 
 ### Technologies used:
 - Spring Boot
@@ -23,9 +32,9 @@ docker-compose up -d
 - Spring for Apache Kafka
 
 ## Versions:
-- Spring Boot: 2.4.2
-- Apache Kafka: 2.7.0
-- Spring for Apache Kafka: 2.6.4
+- Docker: 20.10.5
+- Compose: 1.25.0
+- Apache Maven: 3.6.3
 - Java: 11
 
 Wanna improve this project? Feel free to open a PR! 🚀
